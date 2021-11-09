@@ -11,7 +11,11 @@ class Solution {
             if(current_sum>max_sum){
                 max_sum=current_sum;
             }
+            // System.out.println("Current - "+current_sum);
+            // System.out.println("Max - "+ max_sum);
         }
         return max_sum;
     }
 }
+
+// https://www.youtube.com/watch?v=2MmGzdiKR9Y
