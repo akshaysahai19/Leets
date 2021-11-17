@@ -11,7 +11,6 @@ class Solution {
                 y++;
             }
         }
-        System.out.println(Arrays.toString(nums));
         return x+1;
     }
 }
