@@ -22,7 +22,6 @@ class Solution {
                     // map_row.put(board[i][j]+""+i+j+box,1);
                     }
                 }
-                System.out.println(map_box);
             }
         }
         
