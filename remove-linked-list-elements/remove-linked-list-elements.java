@@ -17,15 +17,11 @@ class Solution {
         
         while(current!=null){
             if(current.val==val){
-                System.out.println("2 Value = "+current.val);
-                    prev.next = current.next;
-                    current.next = null;
-                    current = prev.next;     
+                prev.next = current.next;
             }else{
-                System.out.println("3 Value = "+current.val);
                 prev = current;
-                current = current.next;
             }
+            current = current.next;
         }
         return dummy.next;
     }
