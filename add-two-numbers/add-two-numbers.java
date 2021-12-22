@@ -10,50 +10,36 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int carry = 0;
-        ListNode sumList = new ListNode();
-        ListNode tempList = sumList;
-        
-        while(l1!=null||l2!=null){
-            if(l1!=null&&l2!=null){
-                int sum = l1.val+l2.val+carry;
-                if(sum>9){
-                    carry = (sum/10)%10;
-                    sum = sum%10;
-                }else{
-                    carry=0;
-                }
-                tempList.next = new ListNode(sum);
+        int remainder = 0;
+        ListNode lsum = new ListNode();
+        ListNode lsum_new = lsum;
+        while(l1!=null || l2!=null){
+            int sum = 0;
+            if(l1==null){
+                sum=(l2.val+remainder)%10;
+                remainder=(l2.val+remainder)/10;
+                l2 = l2.next;
+            }else if(l2==null){
+                sum=(l1.val+remainder)%10;
+                remainder=(l1.val+remainder)/10;
+                l1 = l1.next;
+            }else{
+                sum=(l1.val+l2.val+remainder)%10;
+                remainder=(l1.val+l2.val+remainder)/10;
                 l1 = l1.next;
                 l2 = l2.next;
-            }else if(l1==null&&l2!=null){
-                System.out.println("1");
-                int sum = l2.val+carry;
-                if(sum>9){
-                    carry = (sum/10);
-                    sum = sum%10;
-                }else{
-                    carry=0;
-                }
-                tempList.next = new ListNode(sum);
-                l2 = l2.next;
-            }else if(l1!=null&&l2==null){
-                int sum = l1.val+carry;
-                if(sum>9){
-                    carry = (sum/10)%10;
-                    sum = sum%10;
-                }else{
-                    carry=0;
-                }
-                tempList.next = new ListNode(sum);
-                l1 = l1.next;
             }
-            tempList = tempList.next;
+            ListNode temp = new ListNode(sum);
+            lsum.next = temp;
+            lsum = lsum.next;
         }
-        if(carry>0){
-                tempList.next = new ListNode(carry);
+        
+        if(remainder!=0){
+            ListNode temp = new ListNode(remainder);
+            lsum.next = temp;
+            lsum = lsum.next;
         }
-        return sumList.next;
+        
+        return lsum_new.next;
     }
-    
 }
