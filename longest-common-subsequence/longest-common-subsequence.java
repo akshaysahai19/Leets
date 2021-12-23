@@ -10,7 +10,6 @@ class Solution {
         }
         
         if(mem[text1.length()-1][text2.length()-1]!=0){
-            System.out.println("Mem - "+mem[text1.length()-1][text2.length()-1]);
             return mem[text1.length()-1][text2.length()-1];
         }
         
@@ -18,13 +17,10 @@ class Solution {
             mem[text1.length()-1][text2.length()-1] = 1 + getBestMatch(text1.substring(0,text1.length()-1), text2.substring(0,text2.length()-1),mem);
             return mem[text1.length()-1][text2.length()-1];
         }else{
-            mem[text1.length()-1][text2.length()-1] = max(getBestMatch(text1.substring(0,text1.length()-1), text2, mem),getBestMatch(text1, text2.substring(0,text2.length()-1),mem));
+            mem[text1.length()-1][text2.length()-1] = Math.max(getBestMatch(text1.substring(0,text1.length()-1), text2, mem),getBestMatch(text1, text2.substring(0,text2.length()-1),mem));
             
             return mem[text1.length()-1][text2.length()-1];
         }
     }
     
-    public int max(int x, int y){
-        return x>y?x:y;
-    }
 }
