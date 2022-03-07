@@ -10,12 +10,7 @@ class Solution {
         
         int currentMax = 0;
         for(int i=0;i<nums.length;i++){
-            int val = 0;
-            if(map.containsKey(i+"_"+i)){
-                val =  map.get(i+"_"+i);
-            }else{ 
-                val = houseRob(nums, i, i);
-            }
+            int val = houseRob(nums, i, i);
             if(val>currentMax){
                 currentMax = val;
             }
