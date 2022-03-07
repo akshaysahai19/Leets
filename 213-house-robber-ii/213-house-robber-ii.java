@@ -8,30 +8,18 @@ class Solution {
             return nums[0];
         }
         
-        if(nums.length==3){
-            if(nums[0]>nums[1]){
-                if(nums[0]>nums[2]){
-                    return nums[0];
-                }else{
-                    return nums[2];
-                }
-            }else{
-               if(nums[1]>nums[2]){
-                    return nums[1];
-                }else{
-                    return nums[2];
-                } 
-            }
-        }
         int currentMax = 0;
         for(int i=0;i<nums.length;i++){
-            int val = houseRob(nums, i, i);
+            int val = 0;
+            if(map.containsKey(i+"_"+i)){
+                val =  map.get(i+"_"+i);
+            }else{ 
+                val = houseRob(nums, i, i);
+            }
             if(val>currentMax){
                 currentMax = val;
             }
         }
-        // int x = Math.max(houseRob(nums, 0, 0),houseRob(nums, 1, 1));
-        System.out.println(map);
         return currentMax;
     }
     
