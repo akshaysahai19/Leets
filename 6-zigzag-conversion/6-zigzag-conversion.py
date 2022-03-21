@@ -36,8 +36,6 @@ class Solution:
             for j in range(len(zigzagMap[i])):
                 finalOutput+=zigzagMap[i][j]    
                 
-        print(zigzagMap)
-        print(finalOutput)
         return finalOutput
                 
                 
