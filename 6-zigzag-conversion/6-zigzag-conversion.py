@@ -11,9 +11,9 @@ class Solution:
         while rows<numRows and index<len(s):
             
             if rows in zigzagMap:
-                zigzagMap[rows].append(s[index])
+                zigzagMap[rows]+=s[index]
             else:
-                zigzagMap[rows] = [s[index]]
+                zigzagMap[rows] = s[index]
             
             if isUp:
                 if rows==0:
@@ -33,8 +33,7 @@ class Solution:
         
         finalOutput = ''
         for i in range(len(zigzagMap)):
-            for j in range(len(zigzagMap[i])):
-                finalOutput+=zigzagMap[i][j]    
+            finalOutput+=zigzagMap[i]    
                 
         return finalOutput
                 
