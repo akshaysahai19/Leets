@@ -25,7 +25,7 @@ class Solution:
             
             recursiveInvertTree(root.left)
             recursiveInvertTree(root.right)
-            return root
+            # return root
         
         print(recursiveInvertTree(root))
         
