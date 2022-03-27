@@ -1,8 +1,11 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         
-        def findTarget(left, right):
-            mid = left + (right - left) // 2
+        left = 0
+        right = len(nums)-1
+        
+        while left<=right:
+            mid = left+(right)
             if left>right:
                 return -1
             if target<nums[mid]:
@@ -11,8 +14,6 @@ class Solution:
                 return mid
             else:
                 left = mid+1
-            
-            return findTarget(left, right)
         
-        return findTarget(0, len(nums)-1) 
+        return -1
         
