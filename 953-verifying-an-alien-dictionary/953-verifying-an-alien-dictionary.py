@@ -8,12 +8,9 @@ class Solution:
         maxLen = 0
         for word in words:
             maxLen = max(maxLen, len(word))
-        print(maxLen)
         for i in range(len(words)):
             if len(words[i])<maxLen:
                 words[i]+=(maxLen-len(words[i]))*'-'
-                
-        print(words)
         
         for i in range(len(words)-1):
             for j in range(maxLen):
@@ -27,7 +24,5 @@ class Solution:
                             return False
                         break
                 
-        
-                    
         return True
                         
