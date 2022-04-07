@@ -8,11 +8,11 @@ class Solution:
                 return 0
             
             end = len(leftStones)-1
-            leftStones.sort()
             if leftStones[end]>leftStones[end-1]:
                 diff = leftStones[end]-leftStones[end-1]
                 leftStones=leftStones[:end-1]
                 leftStones.append(diff)
+                leftStones.sort()
                 return minStone(leftStones) 
             else:
                 leftStones=leftStones[:end-1]
