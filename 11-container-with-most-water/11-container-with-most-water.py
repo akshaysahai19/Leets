@@ -2,7 +2,7 @@ class Solution:
     def maxArea(self, height: List[int]) -> int:
         left = 0
         right = len(height)-1
-        maxArea = min(height[0], height[right])*(right-left)
+        maxArea = min(height[0], height[right])
         while left<right:
             calArea = (min(height[left], height[right])*(right-left))
             if maxArea<calArea:
