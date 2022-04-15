@@ -1,27 +1,28 @@
 class Solution {
-
-    HashMap<Integer,Integer> mem = new HashMap<>();
+    
+    HashMap<Integer,Integer> dp = new HashMap<Integer, Integer>();
     
     public int climbStairs(int n) {
-        return climbingStairsNew(n,mem);
+        return climbStairsCount(n);    
     }
     
-    public int climbingStairsNew(int n, HashMap<Integer,Integer> mem){
-        if(n<=0){
-            mem.put(n,0);
-            return mem.get(n);
+    public int climbStairsCount(int n){
+        
+        if(dp.containsKey(n)){
+            return dp.get(n);
         }
-        if(n==1){
-            mem.put(1,1);
-            return mem.get(n);
+        
+        if(n==0){
+            return 1;
         }
-        if(n==2){
-            mem.put(2,2);
-            return mem.get(n);
+        if(n>=2){
+            dp.put(n, climbStairsCount(n-1)+climbStairsCount(n-2));
+            return dp.get(n);
+        }else if(n==1){
+            dp.put(n, climbStairsCount(n-1));
+            return dp.get(n);
         }
-        if(!mem.containsKey(n)){
-            mem.put(n,climbingStairsNew(n-1,mem)+climbingStairsNew(n-2,mem));
-        }
-        return mem.get(n);
+        return 0;
     }
+    
 }
