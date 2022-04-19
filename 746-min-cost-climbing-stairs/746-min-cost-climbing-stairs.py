@@ -1,18 +1,16 @@
-class Solution(object):
-    def minCostClimbingStairs(self, cost):
-        """
-        :type cost: List[int]
-        :rtype: int
-        """   
-        return min(self.minCost(cost,0,{}), self.minCost(cost, 1, {}))
-    
-    def minCost(self, cost, i, mem):
-        if i in mem:
-            return mem[i]
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
         
-        if i>len(cost)-1:
-            return 0
+        mem = {}
+        
+        def getMinCost(n):
+            if n in mem:
+                return mem[n]
             
-        mem[i] = cost[i]+min(self.minCost(cost,i+1,mem), self.minCost(cost,i+2,mem))
-        return mem[i] 
+            if n>len(cost)-1:
+                return 0
+            
+            mem[n] = cost[n]+min(getMinCost(n+1), getMinCost(n+2))
+            return mem[n]
         
+        return min(getMinCost(1), getMinCost(0))
