@@ -21,11 +21,8 @@ class Solution {
             return mem[n] as Int
         }
         
-        if(mem[n]==null){
-            mem[n] = nums[n]
-        }
         
-        return mem[n] as Int
+        return nums[n]
     }
     
 }
