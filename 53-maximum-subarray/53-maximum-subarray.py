@@ -2,21 +2,16 @@ class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         
         maxSum = nums[0]
-        # currentMaxValue = nums[0]
+        currentMaxValue = maxSum
         
-        def maxSumArray(n):
-            nonlocal maxSum
+        for n in range(1, len(nums)):
+            if currentMaxValue+nums[n]<nums[n]:
+                currentMaxValue = nums[n]
+            else:
+                currentMaxValue+=nums[n]
             
-            if(n==0):
-                return nums[0]
-            
-            currentMaxValue = max(maxSumArray(n-1)+nums[n], nums[n])
-            maxSum = max(maxSum, currentMaxValue)
-            
-            return currentMaxValue
-            
-        
-        maxSumArray(len(nums)-1)   
+            if maxSum<currentMaxValue:
+                maxSum = currentMaxValue
     
         return maxSum
         
