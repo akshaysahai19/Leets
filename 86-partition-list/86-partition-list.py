@@ -20,8 +20,6 @@ class Solution:
             head = head.next
         
         nodeRight.next = None
-        # print(nodeLeft)
-        # print(nodeRight)
         nodeLeft.next = rightStart.next
         return resultNode.next
                 
