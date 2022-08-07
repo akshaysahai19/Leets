@@ -1,27 +1,33 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         
-        
-        def backTrack(board, word, i, j):
-            
+        def isMatchedWord(m, n, word):
             
             if not word:
                 return True
             
-            if i<0 or i>=len(board) or j<0 or j>=len(board[0]) or board[i][j]!=word[0]:
+            if m<0 or m>=len(board) or n<0 or n>=len(board[0]) or board[m][n]!=word[0]:
                 return False
             
+            temp = ""
+            if board[m][n]==word[0]:
+                temp = word[0]
+                board[m][n]="#"
             
-            temp = board[i][j]
-            board[i][j] = '#'
-            if backTrack(board,word[1:],i+1, j) or backTrack(board,word[1:],i-1, j) or backTrack(board,word[1:],i, j-1) or backTrack(board,word[1:],i, j+1):
+            if (isMatchedWord(m+1,n, word[1:]) or isMatchedWord(m-1,n, word[1:]) or isMatchedWord(m,n-1, word[1:]) or isMatchedWord(m,n+1, word[1:])):
                 return True
-            board[i][j] = temp
+            
+            if temp!="":
+                board[m][n] = temp
             return False
         
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                if backTrack(board, word, i, j):
-                    return True
-        return False
+        def findWord():
+            for m in range(len(board)):
+                for n in range(len(board[0])):
+                    if isMatchedWord(m,n, word):
+                        return True
+            
+            return False
+        
+        return findWord()
         
