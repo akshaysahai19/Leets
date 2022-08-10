@@ -5,7 +5,7 @@ class Solution:
         
         def findPair(listVal, pair):
             
-            if not listVal:
+            if len(listVal)==0:
                 result.append(pair)
                 return
             
