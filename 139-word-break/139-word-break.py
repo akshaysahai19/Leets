@@ -1,24 +1,25 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         
-        def checkWordBreak(newS, index, memo):
+        wordStorage = {}
+        
+        def isPossible(newS):
             
-            if index in memo:
-                return memo[index]
+            if len(newS) in wordStorage:
+                return wordStorage[len(newS)]
             
             if len(newS)==0:
                 return True
             
-            for x in wordDict:
-                if len(newS)>=len(x):
-                    # print(newS[:len(x)])
-                    if x == newS[:len(x)]:
-                        i = len(s)-len(newS[len(x):])
-                        result = checkWordBreak(newS[len(x):], i, memo)
-                        memo[i] = result
-                        if result:
-                            return True
-                
+            for word in wordDict:
+                if newS[:len(word)]==word:
+                    newLen = len(newS[len(word):])
+                    wordStorage[newLen] = isPossible(newS[len(word):])
+                    if wordStorage[newLen]:
+                        return True
+            
             return False
+            
+            
+        return isPossible(s)
         
-        return checkWordBreak(s, 0, {})
