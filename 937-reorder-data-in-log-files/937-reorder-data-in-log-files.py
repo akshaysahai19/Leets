@@ -11,15 +11,16 @@ class Solution:
             if logArray[1][0] in numbers:
                 digitLogs.append(log)
             else:
-                wordLogs.append(log)
+                wordLogs.append(logArray)
         
-        result = wordLogs
-        print(result)
-        print(wordLogs)
-        result = sorted(result, key=lambda x:(x.split()[1:], x[0]))
-        print(result)
+        wordLogs = sorted(wordLogs, key=lambda x:(x[1:], x[0]))
         
-        return result+digitLogs
+        result = []
+        for log in wordLogs:
+             result.append(' '.join(log))
+        result+=digitLogs
+        
+        return result
             
         
         
