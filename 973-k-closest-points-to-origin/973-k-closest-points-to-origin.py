@@ -12,7 +12,6 @@ class Solution:
         result = []
         for item in distanceList:
             result.append(list(item[1]))
-        print(result)
         
         return result[:k]
         
