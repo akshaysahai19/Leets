@@ -1,1 +1,4 @@
-move_to_end
+**Remmeber:**
+​
+* move_to_end
+* popitem
