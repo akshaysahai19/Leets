@@ -27,11 +27,6 @@ class Solution:
                 if( grid[i][j+1]=='1'):
                     landFollowing(grid, i,j+1);
             
-                
-                    
-                    
-        
-        
         for m in range(len(grid)):
             for n in range(len(grid[m])):
                 if(grid[m][n])=='1':
