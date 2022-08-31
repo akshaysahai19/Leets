@@ -10,21 +10,20 @@ class Solution:
         
         hashMap = {}
         
-        def recursiveLevelOrder(root, index):
+        def findLevelOrder(root, index):
+            
             if not root:
-                return
+                return None
             
             if index in hashMap:
                 hashMap[index].append(root.val)
             else:
                 hashMap[index] = [root.val]
             
-            recursiveLevelOrder(root.left, index+1)
-            recursiveLevelOrder(root.right, index+1)
-            
-            return
+            findLevelOrder(root.left, index+1)
+            findLevelOrder(root.right, index+1)
         
-        recursiveLevelOrder(root, 0)
+        findLevelOrder(root, 0)
         
         return hashMap.values()
         
