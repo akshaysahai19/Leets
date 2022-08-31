@@ -21,11 +21,7 @@ class Solution:
         rootList = list(set(rootList))
         heapq.heapify(rootList)
         
-        
-        print(rootList)
         k = 2
-        
-        
         if len(rootList)<k:
             return -1
         
