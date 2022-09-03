@@ -3,14 +3,17 @@ class Solution:
         
         mem = {}
         
-        def getMinCost(n):
-            if n in mem:
-                return mem[n]
+        def findMinCost(i):
             
-            if n>len(cost)-1:
+            if i in mem:
+                return mem[i]
+            
+            if i>=len(cost):
                 return 0
-            
-            mem[n] = cost[n]+min(getMinCost(n+1), getMinCost(n+2))
-            return mem[n]
+            # if i==len(cost)-1:
+            #     return cost[i]
+            mem[i] = cost[i] + min(findMinCost(i+1), findMinCost(i+2))
+            return mem[i]
         
-        return min(getMinCost(1), getMinCost(0))
+        return min(findMinCost(0),findMinCost(1))
+            
