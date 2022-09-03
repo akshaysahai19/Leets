@@ -1,21 +1,14 @@
-class Solution(object):
+class Solution:
     
-    def climbStairs(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
-        return self.differentClimbs(n,{})
+    dp = {}
     
-    def differentClimbs(self,n, mapp):
-        if n in mapp:
-            return mapp[n]
+    def climbStairs(self, n: int) -> int:
+        if n in self.dp:
+            return self.dp[n]
         if n<0:
             return 0
         if n==0:
             return 1
-        mapp[n-1] = self.differentClimbs(n-1, mapp)
-        mapp[n-2] = self.differentClimbs(n-2, mapp)
-        return mapp[n-1]+mapp[n-2]
-            
+        self.dp[n] = self.climbStairs(n-1) + self.climbStairs(n-2)
+        return self.dp[n]
         
