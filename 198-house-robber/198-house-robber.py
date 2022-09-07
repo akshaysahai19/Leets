@@ -11,8 +11,8 @@ class Solution:
             if n>=len(nums):
                 return 0
             
-            for i in range(n+1, len(nums)):
-                dp[n] = nums[n] + max(maxAmount(i+1), maxAmount(i+2))
+            for i in range(n+2, len(nums)):
+                dp[n] = nums[n] + max(maxAmount(i), maxAmount(i+1))
                 return dp[n]
         
             return nums[n]
