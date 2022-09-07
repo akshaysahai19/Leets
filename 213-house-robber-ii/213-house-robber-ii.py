@@ -1,29 +1,25 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
         
+        
+        def findMax(nums):
+            
+            dp = [0]*(len(nums))
+            dp[0] = nums[0]
+            dp[1] = max(nums[0], nums[1])
+
+            for i in range(2, len(nums)):
+                dp[i] = max(nums[i]+dp[i-2], dp[i-1])
+            
+            return max(dp)
+
+        
+        if len(nums)==0:
+            return 0
         if len(nums)==1:
             return nums[0]
-        
-        dp = {}
-        
-        def maxRob(start, end):
+        if len(nums)==2:
+            return max(nums)
             
-            if (start, end) in dp:
-                return dp[(start, end)]
-            
-            if end>len(nums)-1:
-                return 0
-            
-            if end==len(nums)-1:
-                if start==0:
-                    return 0
-            
-            dp[(start, end)] = nums[end] + max(maxRob(start, end+2), maxRob(start, end+3))
-            return dp[(start, end)]
-        
-        maxAmount = 0
-        for i in range(len(nums)):
-            maxAmount = max(maxAmount, maxRob(i,i))
-        
-        return maxAmount
+        return max(findMax(nums[1:]), findMax(nums[:-1]))
         
