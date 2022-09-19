@@ -21,8 +21,7 @@ class Solution:
                     count+=1
         if pairs[-1]!=-1:
             count+=1
-        print(pairs)
-        
+            
         return count
             
                     
