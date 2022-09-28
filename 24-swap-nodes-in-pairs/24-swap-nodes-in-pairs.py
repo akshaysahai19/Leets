@@ -13,6 +13,7 @@ class Solution:
         prev = ListNode()
         prev.next = head
         resultNode.next = prev
+        
         while head and head.next:
             temp = head.next
             head.next = temp.next
