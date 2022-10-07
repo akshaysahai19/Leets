@@ -5,25 +5,28 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         
-        hashMap = {}
+        bfs = []
         
-        def findLevelOrder(root, index):
+        if not root:
+            return []
+        
+        q = deque([root])
+        while q:
             
-            if not root:
-                return None
+            level = []
+            length = len(q)
+            for i in range(length):
+                temp = q.popleft()
+                level.append(temp.val)
+                if temp.left:
+                    q.append(temp.left)
+                if temp.right:
+                    q.append(temp.right)
             
-            if index in hashMap:
-                hashMap[index].append(root.val)
-            else:
-                hashMap[index] = [root.val]
+            bfs.append(level)
+        
+        return bfs
+        
             
-            findLevelOrder(root.left, index+1)
-            findLevelOrder(root.right, index+1)
-        
-        findLevelOrder(root, 0)
-        
-        return hashMap.values()
-        
