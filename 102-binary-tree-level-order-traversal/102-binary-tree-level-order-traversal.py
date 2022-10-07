@@ -16,14 +16,14 @@ class Solution:
         while q:
             
             level = []
-            length = len(q)
-            for i in range(length):
+            for i in range(len(q)):
                 temp = q.popleft()
-                level.append(temp.val)
-                if temp.left:
-                    q.append(temp.left)
-                if temp.right:
-                    q.append(temp.right)
+                if temp:
+                    level.append(temp.val)
+                    if temp.left:
+                        q.append(temp.left)
+                    if temp.right:
+                        q.append(temp.right)
             
             bfs.append(level)
         
