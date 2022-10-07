@@ -7,22 +7,29 @@
 class Solution:
     def levelOrderBottom(self, root: Optional[TreeNode]) -> List[List[int]]:
         
-        hashMap = {}
+        if not root:
+            return []
         
-        def recursiveLevelOrder(root, index):
-            if not root:
-                return
-            
-            if index in hashMap:
-                hashMap[index].append(root.val)
-            else:
-                hashMap[index] = [root.val]
-            
-            recursiveLevelOrder(root.left, index+1)
-            recursiveLevelOrder(root.right, index+1)
-            
-            return
+        bfs = []
         
-        recursiveLevelOrder(root, 0)
+        q = deque([root])
+        
+        while q:
             
-        return list(hashMap.values())[::-1]    
+            level = []
+            
+            for i in range(len(q)):
+                temp = q.popleft()
+                if temp:
+                    level.append(temp.val)
+                    if temp.left:
+                        q.append(temp.left)
+                    if temp.right:
+                        q.append(temp.right)
+            
+            bfs.append(level)
+            
+        return bfs[::-1]
+            
+            
+        
