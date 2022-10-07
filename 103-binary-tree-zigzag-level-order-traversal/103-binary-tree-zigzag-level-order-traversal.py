@@ -6,29 +6,30 @@
 #         self.right = right
 class Solution:
     def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        hashMap = {}
         
-        def recursiveLevelOrder(root, index):
-            if not root:
-                return
-            
-            if index in hashMap:
-                hashMap[index].append(root.val)
-            else:
-                hashMap[index] = [root.val]
-            
-            recursiveLevelOrder(root.left, index+1)
-            recursiveLevelOrder(root.right, index+1)
-            
-            return
+        if not root:
+            return []
         
-        recursiveLevelOrder(root, 0)
-            
-        output = []
-        for i in range(len(hashMap.values())):
-            if i%2!=0:
-                output.append(list(hashMap[i])[::-1])
+        bfs = []
+        q = deque([root])
+        i = 0
+        while q:
+            level = []
+            for i in range(len(q)):
+                temp = q.popleft()
+                if temp:
+                    level.append(temp.val)
+                    if temp.left:
+                        q.append(temp.left)
+                    if temp.right:
+                        q.append(temp.right)
+                        
+            if len(bfs)%2!=0:
+                bfs.append(level[::-1])
             else:
-                output.append(list(hashMap[i]))
-                
-        return output
+                bfs.append(level)
+        
+        return bfs
+                    
+            
+        
