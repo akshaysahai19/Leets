@@ -1,12 +1,12 @@
 class Solution:
     def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
         jobs = sorted(zip(startTime, endTime, profit), key = lambda x: x[0])
-        dp = {}
+        mem = {}
         
         def schedule(n):
             
-            if n in dp:
-                return dp[n]
+            if n in mem:
+                return mem[n]
             
             if n>=len(startTime):
                 return 0
@@ -17,9 +17,9 @@ class Solution:
                     currProfit += schedule(i)
                     break
             
-            nextProf = schedule(n + 1)
-            dp[n] = max(nextProf, currProfit)
-            return dp[n]
+            mem[n] = max(schedule(n + 1), currProfit)
+            
+            return mem[n]
             
         return schedule(0)
         
