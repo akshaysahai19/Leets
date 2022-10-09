@@ -1,22 +1,26 @@
 class Solution:
     def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
         jobs = sorted(zip(startTime, endTime, profit), key = lambda x: x[0])
-        maxVal = 0
+        dp = {}
         
-        @lru_cache(None)
         def schedule(n):
-            nonlocal maxVal
+            
+            if n in dp:
+                return dp[n]
+            
             if n>=len(startTime):
                 return 0
             
             currProfit = jobs[n][2]
             for i in range(n+1, len(startTime)):
+#                 end time of current job and start time of next job
                 if jobs[n][1]<=jobs[i][0]:
                     currProfit += schedule(i)
                     break
             
             nextProf = schedule(n + 1)
-            return max(nextProf, currProfit)
+            dp[n] = max(nextProf, currProfit)
+            return dp[n]
             
         return schedule(0)
         
