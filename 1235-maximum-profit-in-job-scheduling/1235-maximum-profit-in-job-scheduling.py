@@ -13,7 +13,6 @@ class Solution:
             
             currProfit = jobs[n][2]
             for i in range(n+1, len(startTime)):
-#                 end time of current job and start time of next job
                 if jobs[n][1]<=jobs[i][0]:
                     currProfit += schedule(i)
                     break
