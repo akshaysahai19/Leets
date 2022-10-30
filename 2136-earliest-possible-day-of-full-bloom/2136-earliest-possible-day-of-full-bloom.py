@@ -1,13 +1,11 @@
 class Solution:
     def earliestFullBloom(self, plantTime: List[int], growTime: List[int]) -> int:
         
-        indices = sorted(range(len(growTime)), key=lambda x: -growTime[x]) 
+        times = sorted(zip(growTime, plantTime))
 
-        startTime = 0
-        currTime = 0
-        for i in indices:
-            currTime+=plantTime[i]
-            startTime = max(startTime, currTime+growTime[i])
-        return startTime
+        bloomingTime = 0
+        for grow, plant in times:
+            bloomingTime = max(bloomingTime, grow)+plant
+        return bloomingTime
         
         
