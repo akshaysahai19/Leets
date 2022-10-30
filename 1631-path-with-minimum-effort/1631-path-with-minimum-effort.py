@@ -14,7 +14,6 @@ class Solution:
             if r!=0 or c!=0:
                 ans = max(ans, h)
                 
-            
             if r==n-1 and c==m-1:
                 return ans
             
