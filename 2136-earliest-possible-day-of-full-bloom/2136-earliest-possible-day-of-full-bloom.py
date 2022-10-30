@@ -1,9 +1,7 @@
 class Solution:
     def earliestFullBloom(self, plantTime: List[int], growTime: List[int]) -> int:
         
-        diffs = [abs(plantTime[i]-growTime[i]) for i in range(len(plantTime))]
-
-        indices = sorted(range(len(plantTime)), key=lambda x: -growTime[x]) 
+        indices = sorted(range(len(growTime)), key=lambda x: -growTime[x]) 
 
         startTime = 0
         currTime = 0
