@@ -14,7 +14,6 @@ class Solution:
             if r!=0 or c!=0:
                 ans = max(ans, h)
                 
-            seen.add((r,c))
             
             if r==n-1 and c==m-1:
                 return ans
@@ -22,5 +21,6 @@ class Solution:
             for x,y in [(r-1,c),(r+1,c),(r,c-1),(r,c+1)]:
                 if x>=0 and x<n and y>=0 and y<m and (x,y) not in seen:
                     heapq.heappush(queue, [abs(heights[x][y]-heights[r][c]), x, y])
+                    seen.add((r,c))
                     
         
