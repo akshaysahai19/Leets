@@ -15,7 +15,7 @@ class Solution:
                 
         order = []
         while queue:
-            course = queue.pop(0)
+            course = queue.pop()
             order.append(course)
             for prereq in graph[course]:
                 in_degree[prereq]-=1
