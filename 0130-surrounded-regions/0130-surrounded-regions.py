@@ -5,17 +5,7 @@ class Solution:
         """
         m = len(board)
         n = len(board[0])
-
-        def captureFlag(i,j):
-            
-            if i==m or i<0 or j==n or j<0 or board[i][j]!='O':
-                return False
-            
-            board[i][j] = 'X'
-            a = captureFlag(i+1,j)
-            b = captureFlag(i-1,j)
-            c = captureFlag(i,j+1)
-            d = captureFlag(i,j-1)
+        
         
         def borderFlag(i,j):
             
@@ -37,10 +27,11 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 if board[i][j]=='O':
-                    captureFlag(i,j)
+                    board[i][j]='X'
+        
+        for i in range(m):
+            for j in range(n):
                 if board[i][j]=='B':
                     board[i][j] = 'O'
-        
-        print(board)
         
 
