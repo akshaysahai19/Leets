@@ -17,6 +17,6 @@ class Solution:
         res = ''
         for i in range(len(stack)):
             res+=(stack[i][0]*stack[i][1])
-        print(stack)
+            
         return res
         
