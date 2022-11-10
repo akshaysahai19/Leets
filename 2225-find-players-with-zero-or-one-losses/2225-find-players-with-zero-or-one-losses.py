@@ -17,10 +17,8 @@ class Solution:
             
             if winner not in allPlayers:
                 allPlayers[winner] = 1
-                # allPlayers.append(winner)
             if loser not in allPlayers:
                 allPlayers[loser] = 1
-                # allPlayers.append(loser)
         
         answer_l = []
         answer_r = []
