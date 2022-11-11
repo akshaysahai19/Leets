@@ -24,6 +24,4 @@ class Solution:
                 if grid[i][j]==1:
                     ans.append(findIslands(i,j, 0))
         
-        print(ans)
-        
         return 0 if not ans else max(ans)
