@@ -1,3 +1,5 @@
+import bisect
+
 class MedianFinder:
 
     def __init__(self):
@@ -5,12 +7,11 @@ class MedianFinder:
         
 
     def addNum(self, num: int) -> None:
-        heapq.heappush(self.stream, num)
-        
+        index = bisect.bisect_left(self.stream, num)
+        self.stream.insert(index, num)
 
     def findMedian(self) -> float:
         mid = len(self.stream)//2
-        self.stream.sort()
         if len(self.stream)%2==0:
             return (self.stream[mid-1]+self.stream[mid])/2
         else:
