@@ -3,19 +3,25 @@ import bisect
 class MedianFinder:
 
     def __init__(self):
-        self.stream = []
+        self.maxHeap = []
+        self.minHeap = []
         
 
     def addNum(self, num: int) -> None:
-        index = bisect.bisect_left(self.stream, num)
-        self.stream.insert(index, num)
+        if not self.maxHeap or num<=-self.maxHeap[0]:
+            heapq.heappush(self.maxHeap, -num)
+        else:
+            heapq.heappush(self.minHeap, num)
+        
+        if len(self.minHeap)>len(self.maxHeap):
+            heapq.heappush(self.maxHeap, -heapq.heappop(self.minHeap))
+        elif len(self.maxHeap)>len(self.minHeap)+1:
+            heapq.heappush(self.minHeap, -heapq.heappop(self.maxHeap))
 
     def findMedian(self) -> float:
-        mid = len(self.stream)//2
-        if len(self.stream)%2==0:
-            return (self.stream[mid-1]+self.stream[mid])/2
-        else:
-            return self.stream[mid]
+        if (len(self.minHeap)+len(self.maxHeap))%2==0:
+            return (-self.maxHeap[0]+self.minHeap[0])/2
+        return -self.maxHeap[0]
             
         
 
