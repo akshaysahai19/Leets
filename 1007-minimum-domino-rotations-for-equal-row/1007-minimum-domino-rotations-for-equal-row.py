@@ -1,58 +1,33 @@
 class Solution:
     def minDominoRotations(self, tops: List[int], bottoms: List[int]) -> int:
         
-        m = len(tops)
-        topChanges = 0
-        topReverseChanges = 1
-        changedTop = [tops[0]]
-        reverseTop = [bottoms[0]]
-        for i in range(1, m):
-            if changedTop[-1]!=tops[i] and changedTop[-1]==bottoms[i]:
-                topChanges+=1
-                changedTop.append(bottoms[i])
-            elif changedTop[-1]==tops[i]:
-                changedTop.append(tops[i])
-                
+        n = len(bottoms)
+        
+        def rotate(x):
+            rot_a = rot_b = 0
             
-            if reverseTop[-1]!=tops[i] and reverseTop[-1]==bottoms[i]:
-                topReverseChanges+=1
-                reverseTop.append(bottoms[i])
-            elif reverseTop[-1]==tops[i]:
-                reverseTop.append(tops[i])
-
-        bottomChanges = 0
-        bottomReverseChanges = 1
-        reverseBottom = [tops[0]]
-        changedBottom = [bottoms[0]]
-        for i in range(1, m):
-            if changedBottom[-1]!=bottoms[i] and changedBottom[-1]==tops[i]:
-                bottomChanges+=1
-                changedBottom.append(tops[i])
-            elif changedBottom[-1]==bottoms[i]:
-                changedBottom.append(bottoms[i])
+            for i in range(n):
+                if tops[i]!=x and bottoms[i]!=x:
+                    return -1
+                elif tops[i]!=x:
+                    rot_a+=1
+                elif bottoms[i]!=x:
+                    rot_b+=1
             
-            if reverseBottom[-1]!=bottoms[i] and reverseBottom[-1]==tops[i]:
-                bottomReverseChanges+=1
-                reverseBottom.append(tops[i])
-            elif reverseBottom[-1]==bottoms[i]:
-                reverseBottom.append(bottoms[i])
-                    
-        ans = float('inf')
+            return min(rot_a, rot_b)
         
-        if len(changedTop)==m:
-            ans = min(ans, topChanges)
+        rotations_top = rotate(tops[0])
+        rotations_bottom = rotate(bottoms[0])
         
-        if len(reverseTop)==m:
-            ans = min(ans, topReverseChanges)
-            
-        if len(changedBottom)==m:
-            ans = min(ans, bottomChanges)
+        if rotations_top!=-1 and rotations_bottom!=-1:
+            return min(rotations_top, rotations_bottom)
         
-        if len(reverseBottom)==m:
-            ans = min(ans, bottomReverseChanges)
+        if rotations_top!=-1:
+            return rotations_top
         
-        if ans!=float('inf'):
-            return ans
+        if rotations_bottom!=-1:
+            return rotations_bottom
+        
         return -1
         
         
