@@ -7,8 +7,7 @@ class Solution:
         distincLeft = [1 for i in range(m)]
         distincRight = [1 for i in range(m)]
         
-        leftSet = set()
-        leftSet.add(s[0])
+        leftSet = set(s[0])
         for i in range(1, len(s)):
             l = s[i]
             if l not in leftSet:
@@ -17,20 +16,15 @@ class Solution:
                 distincLeft[i] = distincLeft[i-1]
             leftSet.add(l)
                     
-        currRightMap = {}
-        for i in range(len(s)-1,-1,-1):
+        rightSet = set(s[m-1])
+        for i in range(len(s)-2,-1,-1):
             l = s[i]
-            if l not in currRightMap:
-                if i<len(s)-1:
-                    distincRight[i] = distincRight[i+1]+1
-                else:
-                    distincRight[i] = 1
-                currRightMap[l] = 1
+            if l not in rightSet:
+                distincRight[i] = distincRight[i+1]+1
+                rightSet.add(l)
             else:
-                if i<len(s)-1:
-                    distincRight[i] = distincRight[i+1]
-                else:
-                    distincRight[i] = 1
+                distincRight[i] = distincRight[i+1]
+            
         
         for i in range(len(s)-1):
             if distincLeft[i]==distincRight[i+1]:
