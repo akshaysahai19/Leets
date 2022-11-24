@@ -17,10 +17,9 @@ class Solution:
             b = findWord(i-1,j,w[1:])
             c = findWord(i,j+1,w[1:])
             d = findWord(i,j-1,w[1:])
+            board[i][j] = temp
             if a or b or c or d:
                 return True
-            
-            board[i][j] = temp
             return False
         
         for i in range(m):
