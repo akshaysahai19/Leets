@@ -39,8 +39,6 @@ class LRUCache:
             return -1
         self.shift_to_head(self.cache[key])
         return self.cache[key].value
-        
-        
 
     def put(self, key: int, value: int) -> None:
         node = self.cache.get(key)
