@@ -14,15 +14,12 @@ class Solution:
                     non_obstacle_points+=1
                 
         paths = []
-        total = 0
         def countPaths(x, y, curr, rem):
-            nonlocal total
             
             if x<0 or y<0 or x>=m or y>=n or grid[x][y]<0:
                 return
             
             if grid[x][y]==2 and rem==1:
-                total+=1
                 paths.append(curr)
                 return
             
@@ -38,5 +35,5 @@ class Solution:
         
         countPaths(start_row,start_col, [], non_obstacle_points)
         
-        return total
+        return len(paths)
         
